@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import type { PaymentSessionDto } from './dto/payment-session.dto';
+import { PaymentSessionDto } from './dto/payment-session.dto';
 import { PaymentsService } from './payments.service';
 
 @Controller('payments')
@@ -8,7 +8,7 @@ export class PaymentsController {
 
   @Post('create-payment-session')
   createPaymentSession(@Body() paymentSessionDto: PaymentSessionDto) {
-    return paymentSessionDto
+    return this.paymentsService.createPaymentSession(paymentSessionDto);
   }
 
   @Get('success')
